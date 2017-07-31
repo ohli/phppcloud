@@ -1,0 +1,26 @@
+version: "3"
+
+volumes:
+  mysql:
+  nextcloud:
+  phpbb:
+
+services:
+  db:
+    image: mariadb:10
+    volumes:
+      - mysql:/var/lib/mysql
+
+  nextcloud:
+    image: nextcloud:12
+    ports:
+      - "8080:80"
+    volumes:
+      - nextcloud:/var/www/html
+
+  phpbb:
+    image: selim13/phpbb:3.2-apache
+    ports:
+      - "8081:80"
+    volumes:
+      - phpbb:/phpbb
